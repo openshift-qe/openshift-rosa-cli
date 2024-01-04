@@ -4,9 +4,9 @@ import (
 	"os"
 	"strings"
 
+	vpcClient "github.com/openshift-qe/openshift-rosa-cli/aws/vpc"
+	. "github.com/openshift-qe/openshift-rosa-cli/pkg/log"
 	"github.com/spf13/cobra"
-	vpcClient "gitlab.cee.redhat.com/openshift-group-I/ocm_aws/aws/vpc"
-	. "gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/log"
 )
 
 var args struct {

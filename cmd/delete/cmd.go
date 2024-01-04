@@ -17,9 +17,9 @@ limitations under the License.
 package delete
 
 import (
+	"github.com/openshift-qe/openshift-rosa-cli/cmd/delete/tag"
+	"github.com/openshift-qe/openshift-rosa-cli/cmd/delete/vpc"
 	"github.com/spf13/cobra"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/cmd/delete/tag"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/cmd/delete/vpc"
 )
 
 var Cmd = &cobra.Command{

@@ -16,8 +16,8 @@ import (
 	elb "github.com/aws/aws-sdk-go-v2/service/elasticloadbalancing"
 	"github.com/aws/aws-sdk-go-v2/service/iam"
 	"github.com/aws/aws-sdk-go-v2/service/route53"
-	CON "gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/constants"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/log"
+	CON "github.com/openshift-qe/openshift-rosa-cli/pkg/constants"
+	"github.com/openshift-qe/openshift-rosa-cli/pkg/log"
 )
 
 func CreateAWSV2Client(profileName string, region string) (*AwsV2Client, error) {

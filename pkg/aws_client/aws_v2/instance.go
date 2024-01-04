@@ -11,7 +11,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/iam"
 	iamtypes "github.com/aws/aws-sdk-go-v2/service/iam/types"
 	"github.com/aws/aws-sdk-go/aws"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/log"
+	"github.com/openshift-qe/openshift-rosa-cli/pkg/log"
 )
 
 func (client *AwsV2Client) LaunchInstance(subnetID string, imageID string, count int, instanceType string, keyName string, securityGroupIds []string, wait bool) (*ec2.RunInstancesOutput, error) {

@@ -7,8 +7,8 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
 
-	CON "gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/constants"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/log"
+	CON "github.com/openshift-qe/openshift-rosa-cli/pkg/constants"
+	"github.com/openshift-qe/openshift-rosa-cli/pkg/log"
 )
 
 func (client *AwsV2Client) ListVPCByName(vpcName string) ([]types.Vpc, error) {

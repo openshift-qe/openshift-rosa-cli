@@ -8,8 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/iam"
 	"github.com/aws/aws-sdk-go/service/sts"
-	CON "gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/constants"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/file"
+	CON "github.com/openshift-qe/openshift-rosa-cli/pkg/constants"
+	"github.com/openshift-qe/openshift-rosa-cli/pkg/file"
 )
 
 // IsValid will return whether the credential is valid

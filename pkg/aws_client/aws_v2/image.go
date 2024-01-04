@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/log"
+	"github.com/openshift-qe/openshift-rosa-cli/pkg/log"
 )
 
 func (client *AwsV2Client) CopyImage(sourceImageID string, sourceRegion string, name string) (string, error) {

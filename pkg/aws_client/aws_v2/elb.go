@@ -7,7 +7,7 @@ import (
 	elb "github.com/aws/aws-sdk-go-v2/service/elasticloadbalancing"
 	// elbtypes "github.com/aws/aws-sdk-go-v2/service/elasticloadbalancingv2/types"
 	elbtypes "github.com/aws/aws-sdk-go-v2/service/elasticloadbalancing/types"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/log"
+	"github.com/openshift-qe/openshift-rosa-cli/pkg/log"
 )
 
 func (client *AwsV2Client) DescribeLoadBalancers(vpcID string) ([]elbtypes.LoadBalancerDescription, error) {

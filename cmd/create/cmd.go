@@ -17,11 +17,11 @@ limitations under the License.
 package create
 
 import (
+	"github.com/openshift-qe/openshift-rosa-cli/cmd/create/proxy"
+	"github.com/openshift-qe/openshift-rosa-cli/cmd/create/sg"
+	"github.com/openshift-qe/openshift-rosa-cli/cmd/create/subnets"
+	"github.com/openshift-qe/openshift-rosa-cli/cmd/create/vpc"
 	"github.com/spf13/cobra"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/cmd/create/proxy"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/cmd/create/sg"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/cmd/create/subnets"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/cmd/create/vpc"
 )
 
 var Cmd = &cobra.Command{

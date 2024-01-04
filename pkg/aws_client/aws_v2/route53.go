@@ -5,7 +5,7 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/service/route53"
 	"github.com/aws/aws-sdk-go-v2/service/route53/types"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/log"
+	"github.com/openshift-qe/openshift-rosa-cli/pkg/log"
 )
 
 func (awsClient AwsV2Client) CreateHostedZone(hostedZoneName string, vpcID string, private bool) (*route53.CreateHostedZoneOutput, error) {
