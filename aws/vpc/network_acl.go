@@ -1,6 +1,6 @@
 package vpc
 
-import "gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/log"
+import "github.com/openshift-qe/openshift-rosa-cli/pkg/log"
 
 func (vpc *VPC) AddSimplyDenyRuleToNetworkACL(port int32, ruleNumber int32) error {
 	err := vpc.AddNetworkACLRules(true, "6", "deny", ruleNumber, port, port, "0.0.0.0/0")

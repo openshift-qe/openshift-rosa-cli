@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/service/cloudformation"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/log"
+	"github.com/openshift-qe/openshift-rosa-cli/pkg/log"
 )
 
 // Describe cloudformation by name

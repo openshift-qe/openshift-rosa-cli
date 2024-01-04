@@ -1,4 +1,4 @@
-module gitlab.cee.redhat.com/openshift-group-I/ocm_aws
+module github.com/openshift-qe/openshift-rosa-cli
 
 go 1.17
 

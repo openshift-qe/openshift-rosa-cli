@@ -1,9 +1,9 @@
 package vpc
 
 import (
+	vpcClient "github.com/openshift-qe/openshift-rosa-cli/aws/vpc"
+	awsV2 "github.com/openshift-qe/openshift-rosa-cli/pkg/aws_client/aws_v2"
 	"github.com/spf13/cobra"
-	vpcClient "gitlab.cee.redhat.com/openshift-group-I/ocm_aws/aws/vpc"
-	awsV2 "gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/aws_client/aws_v2"
 )
 
 var args struct {

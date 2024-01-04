@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/service/iam"
-	CON "gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/constants"
+	CON "github.com/openshift-qe/openshift-rosa-cli/pkg/constants"
 )
 
 func (client *AWSClient) RoleExisted(roleName string) bool {

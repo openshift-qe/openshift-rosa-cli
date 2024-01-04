@@ -5,10 +5,10 @@ import (
 	"os"
 	"strings"
 
+	"github.com/openshift-qe/openshift-rosa-cli/cmd/create"
+	"github.com/openshift-qe/openshift-rosa-cli/cmd/delete"
+	"github.com/openshift-qe/openshift-rosa-cli/cmd/tag"
 	"github.com/spf13/cobra"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/cmd/create"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/cmd/delete"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/cmd/tag"
 )
 
 var root = &cobra.Command{

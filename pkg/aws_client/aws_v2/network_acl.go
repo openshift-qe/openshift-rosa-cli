@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
 	"github.com/aws/aws-sdk-go/aws"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/log"
+	"github.com/openshift-qe/openshift-rosa-cli/pkg/log"
 )
 
 func (client *AwsV2Client) ListNetWorkAcls(vpcID string) ([]types.NetworkAcl, error) {
@@ -33,8 +33,8 @@ func (client *AwsV2Client) ListNetWorkAcls(vpcID string) ([]types.NetworkAcl, er
 	return customizedAcls, nil
 }
 
-//RuleAction : deny/allow
-//Protocol: TCP --> 6
+// RuleAction : deny/allow
+// Protocol: TCP --> 6
 func (client *AwsV2Client) AddNetworkAclEntry(networkAclId string, egress bool, protocol string, ruleAction string, ruleNumber int32, fromPort int32, toPort int32, cidrBlock string) (*ec2.CreateNetworkAclEntryOutput, error) {
 	input := &ec2.CreateNetworkAclEntryInput{
 		Egress:       aws.Bool(egress),

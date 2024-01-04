@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	awsV2 "gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/aws_client/aws_v2"
-	CON "gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/constants"
-	"gitlab.cee.redhat.com/openshift-group-I/ocm_aws/pkg/log"
+	awsV2 "github.com/openshift-qe/openshift-rosa-cli/pkg/aws_client/aws_v2"
+	CON "github.com/openshift-qe/openshift-rosa-cli/pkg/constants"
+	"github.com/openshift-qe/openshift-rosa-cli/pkg/log"
 )
 
 //GenerateVPCByID will return a VPC with CIDRpool and subnets
