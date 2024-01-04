@@ -72,7 +72,6 @@ const (
 var ProxyImageMap = map[string]string{
 	"us-west-2":      "ami-03b82d95dbe67072d",
 	"ap-northeast-1": "ami-0517f6ca1da98f337",
-	"ap-southeast-2": "ami-05e4215d0c0b53311",
 }
 var BastionImageMap = map[string]string{
 	"us-east-1":      "ami-01c647eace872fc02",

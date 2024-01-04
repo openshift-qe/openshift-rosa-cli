@@ -23,7 +23,7 @@ func (vpc *VPC) LaunchProxyInstance(imageID string, zone string, sshKey string) 
 			var err error
 			imageID, err = vpc.CopyImageToProxy(CON.ProxyName)
 			if err != nil {
-				log.LogError("Error preparing a subnet in current zone %s with image ID %s: %s", zone, imageID, err)
+				log.LogError("Error to copy image ID %s: %s", imageID, err)
 				return inst, "", "", err
 			}
 			//Wait 10 minutes for image to active
