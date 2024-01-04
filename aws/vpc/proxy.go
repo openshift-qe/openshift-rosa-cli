@@ -26,8 +26,8 @@ func (vpc *VPC) LaunchProxyInstance(imageID string, zone string, sshKey string) 
 				log.LogError("Error to copy image ID %s: %s", imageID, err)
 				return inst, "", "", err
 			}
-			//Wait 10 minutes for image to active
-			result, err := vpc.WaitImageToActive(imageID, 10)
+			//Wait 30 minutes for image to active
+			result, err := vpc.WaitImageToActive(imageID, 30)
 			if err != nil || !result {
 				log.LogError("Error wait image %s to active %s", imageID, err)
 				return inst, "", "", err
