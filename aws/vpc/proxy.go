@@ -116,7 +116,7 @@ func (vpc *VPC) WaitImageToActive(imageID string, timeout time.Duration) (imageA
 		log.LogInfo("Wait for image %s status to active", imageID)
 		time.Sleep(time.Minute)
 	}
-	err = fmt.Errorf("timeout for waiting instances terminated")
+	err = fmt.Errorf("timeout for waiting image active")
 	return imageAvailable, err
 
 }
