@@ -17,7 +17,10 @@ How to delete vpc and the reourses:
 
 # Build a binary for the command call
 * Call below command to install the ocmqe package
-`$ go install gitlab.cee.redhat.com/openshift-group-I/ocm_aws/ocmqe@latest`
+`$ go install github.com/openshift-qe/openshift-rosa-cli/ocmqe@latest`
+
+* Make the go binary path to be in PATH
+`$ export PATH=$PATH:/$GOPATH/bin:/usr/local/bin`
 
 # How to use the binary of ocmqe to create resources
 * Check the help message
