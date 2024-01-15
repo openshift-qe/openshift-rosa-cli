@@ -1,9 +1,8 @@
 package aws_v1
 
 import (
-	"fmt"
-
 	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
+	"github.com/openshift-qe/openshift-rosa-cli/pkg/log"
 )
 
 func (client *AWSClient) DescribeLogGroupsByName(logGroupName string) (cloudwatchlogs.DescribeLogGroupsOutput, error) {
@@ -11,7 +10,7 @@ func (client *AWSClient) DescribeLogGroupsByName(logGroupName string) (cloudwatc
 		LogGroupNamePrefix: &logGroupName,
 	})
 	if err != nil {
-		fmt.Printf("Got error describe log group:%s ", err)
+		log.LogError("Got error describe log group:%s ", err)
 	}
 	return *output, err
 }
@@ -21,7 +20,7 @@ func (client *AWSClient) DescribeLogStreamByName(logGroupName string) (cloudwatc
 		LogGroupName: &logGroupName,
 	})
 	if err != nil {
-		fmt.Printf("Got error describe log stream: %s", err)
+		log.LogError("Got error describe log stream: %s", err)
 	}
 	return *output, err
 }
@@ -31,7 +30,7 @@ func (client *AWSClient) DeleteLogGroupByName(logGroupName string) (cloudwatchlo
 		LogGroupName: &logGroupName,
 	})
 	if err != nil {
-		fmt.Printf("Got error delete log group: %s", err)
+		log.LogError("Got error delete log group: %s", err)
 	}
 	return *output, err
 }
