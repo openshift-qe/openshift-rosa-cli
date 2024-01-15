@@ -11,7 +11,7 @@ func (client *AWSClient) DescribeLogGroupsByName(logGroupName string) (cloudwatc
 		LogGroupNamePrefix: &logGroupName,
 	})
 	if err != nil {
-		fmt.Println("Got error describe log group: ", err)
+		fmt.Printf("Got error describe log group:%s ", err)
 	}
 	return *output, err
 }
@@ -21,7 +21,17 @@ func (client *AWSClient) DescribeLogStreamByName(logGroupName string) (cloudwatc
 		LogGroupName: &logGroupName,
 	})
 	if err != nil {
-		fmt.Println("Got error describe log stream: ", err)
+		fmt.Printf("Got error describe log stream: %s", err)
+	}
+	return *output, err
+}
+
+func (client *AWSClient) DeleteLogGroupByName(logGroupName string) (cloudwatchlogs.DeleteLogGroupOutput, error) {
+	output, err := client.cloudWatchLogsClient.DeleteLogGroup(&cloudwatchlogs.DeleteLogGroupInput{
+		LogGroupName: &logGroupName,
+	})
+	if err != nil {
+		fmt.Printf("Got error delete log group: %s", err)
 	}
 	return *output, err
 }
