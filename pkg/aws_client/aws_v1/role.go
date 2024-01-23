@@ -353,3 +353,29 @@ func (client *AWSClient) CreatePolicyForAuditLogForward(policyName string) (stri
 	}
 	return client.CreatePolicy(policyName, statement)
 }
+
+func (client *AWSClient) DeleteRoleAndPolicy(roleName string) error {
+
+	input := &iam.ListAttachedRolePoliciesInput{
+		RoleName: &roleName,
+	}
+	output, err := client.iamClient.ListAttachedRolePolicies(input)
+	if err != nil {
+		return err
+	}
+	fmt.Println(output.AttachedPolicies)
+
+	err = client.DeleteRole(roleName)
+	if err != nil {
+		return err
+	}
+	for _, policy := range output.AttachedPolicies {
+
+		err = client.DeletePolicy(*policy.PolicyArn)
+		if err != nil {
+			return err
+		}
+
+	}
+	return err
+}
