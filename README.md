@@ -28,6 +28,7 @@ How to delete vpc and the reourses:
 
 * Create a vpc on the indicated region
 `$ ocmqe create vpc --region us-west-2 --name <your-alias>-vpc`
+
 ** When you have a vpc on the indicated region and you want to re-use it, if cannot find create it 
 `$ ocmqe create vpc --region us-west-2 --name <your-alias>-vpc --find-existing`
 
