@@ -55,7 +55,7 @@ func init() {
 	Cmd.MarkFlagRequired("vpc-id")
 }
 func run(cmd *cobra.Command, _ []string) {
-	console, err := awsV2.CreateAWSV2Client("", "us-west-2")
+	console, err := awsV2.CreateAWSV2Client("", args.region)
 	if err != nil {
 		panic(err)
 	}
