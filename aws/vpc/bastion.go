@@ -72,7 +72,7 @@ func (vpc *VPC) PrepareBastion(zone string) (*types.Instance, error) {
 		},
 	}
 
-	insts, err := vpc.AWSClient.ListInstance(filters...)
+	insts, err := vpc.AWSClient.ListInstances([]string{}, filters...)
 	if err != nil {
 		return nil, err
 	}
