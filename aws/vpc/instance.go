@@ -23,7 +23,7 @@ func (vpc *VPC) TerminateVPCInstances(nonClusterOnly bool) error {
 			},
 		})
 	}
-	insts, err := vpc.AWSClient.ListInstance(filters...)
+	insts, err := vpc.AWSClient.ListInstances([]string{}, filters...)
 
 	if err != nil {
 		log.LogError("Error happened when list instances for vpc %s: %s", vpc.VpcID, err)

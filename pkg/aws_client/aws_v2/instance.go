@@ -43,7 +43,8 @@ func (client *AwsV2Client) LaunchInstance(subnetID string, imageID string, count
 
 // ListInstance pass parameter like
 // map[string][]string{"vpc-id":[]string{"<id>" }}, map[string][]string{"tag:Name":[]string{"<value>" }}
-func (client *AwsV2Client) ListInstance(filters ...map[string][]string) ([]types.Instance, error) {
+// instanceIDs can be empty. And if you would like to get more info from the instances like security groups, it should be set
+func (client *AwsV2Client) ListInstances(instanceIDs []string, filters ...map[string][]string) ([]types.Instance, error) {
 	FilterInput := []types.Filter{}
 	for _, filter := range filters {
 		for k, v := range filter {
@@ -56,6 +57,9 @@ func (client *AwsV2Client) ListInstance(filters ...map[string][]string) ([]types
 	}
 	getInstanceInput := &ec2.DescribeInstancesInput{
 		Filters: FilterInput,
+	}
+	if len(instanceIDs) != 0 {
+		getInstanceInput.InstanceIds = instanceIDs
 	}
 	resp, err := client.EC2().DescribeInstances(context.TODO(), getInstanceInput)
 	if err != nil {
