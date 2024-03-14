@@ -163,3 +163,15 @@ func (client *AwsV2Client) CreateSecurityGroup(vpcID string, groupName string, s
 	log.LogInfo("Created tagged security group with ID %s", *resp.GroupId)
 	return resp, err
 }
+
+func (client *AwsV2Client) GetSecurityGroupWithID(sgID string) (*ec2.DescribeSecurityGroupsOutput, error) {
+
+	describeSGInput := &ec2.DescribeSecurityGroupsInput{
+		GroupIds: []string{sgID},
+	}
+	output, err := client.ec2Client.DescribeSecurityGroups(context.TODO(), describeSGInput)
+	if err != nil {
+		return nil, err
+	}
+	return output, nil
+}
