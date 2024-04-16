@@ -47,7 +47,7 @@ func (vpc *VPC) LaunchProxyInstance(imageID string, zone string, keypairName str
 		return inst, "", "", err
 	}
 
-	keyName := fmt.Sprintf("%s-%s", CON.InstanceKeyName, keypairName)
+	keyName := fmt.Sprintf("%s-%s", CON.InstanceKeyNamePrefix, keypairName)
 	key, err := vpc.CreateKeyPair(keyName)
 	if err != nil {
 		log.LogError("Create key pair failed %s", err)

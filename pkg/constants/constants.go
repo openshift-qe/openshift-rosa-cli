@@ -63,10 +63,10 @@ const (
 	QEFlagKey = "ocm_qe_flag"
 
 	// Proxy related
-	ProxyName       = "ocm-proxy"
-	InstanceKeyName = "ocm_ci"
-	AWSInstanceUser = "ec2-user"
-	BastionName     = "ocm-bastion"
+	ProxyName             = "ocm-proxy"
+	InstanceKeyNamePrefix = "ocm_ci"
+	AWSInstanceUser       = "ec2-user"
+	BastionName           = "ocm-bastion"
 )
 
 var ProxyImageMap = map[string]string{
