@@ -64,7 +64,7 @@ const (
 
 	// Proxy related
 	ProxyName       = "ocm-proxy"
-	InstanceKeyName = "openshift-qe"
+	InstanceKeyName = "ocm_ci"
 	AWSInstanceUser = "ec2-user"
 	BastionName     = "ocm-bastion"
 )

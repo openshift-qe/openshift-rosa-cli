@@ -11,12 +11,13 @@ import (
 )
 
 var args struct {
-	region      string
-	vpcID       string
-	zone        string
-	imageID     string
-	sshFilePath string
-	caFilePath  string
+	region         string
+	vpcID          string
+	zone           string
+	imageID        string
+	privateKeyPath string
+	keyPairName    string
+	caFilePath     string
 }
 
 var Cmd = &cobra.Command{
@@ -47,7 +48,7 @@ func init() {
 		"Create a pair of subnets to",
 	)
 	flags.StringVarP(
-		&args.vpcID,
+		&args.zone,
 		"zone",
 		"",
 		"",
@@ -60,13 +61,7 @@ func init() {
 		"",
 		"Create a proxy to the indicated zone",
 	)
-	flags.StringVarP(
-		&args.sshFilePath,
-		"ssh-file",
-		"",
-		"",
-		"Create a proxy to the indicated zone",
-	)
+
 	flags.StringVarP(
 		&args.caFilePath,
 		"ca-file",
@@ -74,10 +69,27 @@ func init() {
 		"",
 		"Create a proxy and store the ca file",
 	)
+
+	flags.StringVarP(
+		&args.keyPairName,
+		"keypair-name",
+		"",
+		"",
+		"Store key pair private key to the path",
+	)
+	flags.StringVarP(
+		&args.privateKeyPath,
+		"privatekey-path",
+		"",
+		"",
+		"Store key pair private key to the path",
+	)
 	Cmd.MarkFlagRequired("vpc-id")
 	Cmd.MarkFlagRequired("region")
 	Cmd.MarkFlagRequired("zone")
 	Cmd.MarkFlagRequired("ca-file")
+	Cmd.MarkFlagRequired("keypair-name")
+	Cmd.MarkFlagRequired("privatekey-path")
 }
 func run(cmd *cobra.Command, _ []string) {
 	console, err := awsV2.CreateAWSV2Client("", "us-west-2")
@@ -88,7 +100,7 @@ func run(cmd *cobra.Command, _ []string) {
 	if err != nil {
 		panic(err)
 	}
-	_, ip, ca, err := vpc.LaunchProxyInstance(args.imageID, args.zone, args.sshFilePath)
+	_, ip, ca, err := vpc.LaunchProxyInstance(args.imageID, args.zone, args.keyPairName, args.privateKeyPath)
 	if err != nil {
 		panic(err)
 	}

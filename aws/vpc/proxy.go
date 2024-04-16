@@ -7,13 +7,14 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
 
 	CON "github.com/openshift-qe/openshift-rosa-cli/pkg/constants"
+	"github.com/openshift-qe/openshift-rosa-cli/pkg/file"
 	"github.com/openshift-qe/openshift-rosa-cli/pkg/log"
 	"github.com/openshift-qe/openshift-rosa-cli/pkg/ssh"
 )
 
 // LaunchProxyInstance will launch a proxy instance on the indicated zone.
 // If set imageID to empty, it will find the proxy image in the ProxyImageMap map
-func (vpc *VPC) LaunchProxyInstance(imageID string, zone string, sshKey string) (types.Instance, string, string, error) {
+func (vpc *VPC) LaunchProxyInstance(imageID string, zone string, keypairName string, privateKeyPath string) (in types.Instance, privateIP string, proxyServerCA string, err error) {
 	var inst types.Instance
 	if imageID == "" {
 		var ok bool
@@ -46,7 +47,20 @@ func (vpc *VPC) LaunchProxyInstance(imageID string, zone string, sshKey string) 
 		return inst, "", "", err
 	}
 
-	instOut, err := vpc.AWSClient.LaunchInstance(pubSubnet.ID, imageID, 1, "t3.medium", CON.InstanceKeyName, []string{SGID}, true)
+	keyName := fmt.Sprintf("%s-%s", CON.InstanceKeyName, keypairName)
+	key, err := vpc.CreateKeyPair(keyName)
+	if err != nil {
+		log.LogError("Create key pair failed %s", err)
+		return inst, "", "", err
+	}
+	privateKeyFile := "proxyKeyPair.pem"
+	sshKey, err := file.WriteToFile(*key, privateKeyFile, privateKeyPath)
+	if err != nil {
+		log.LogError("Write private key to file failed %s", err)
+		return inst, "", "", err
+	}
+
+	instOut, err := vpc.AWSClient.LaunchInstance(pubSubnet.ID, imageID, 1, "t3.medium", keyName, []string{SGID}, true)
 	if err != nil {
 		log.LogError("Launch proxy instance failed %s", err)
 		return inst, "", "", err
@@ -80,7 +94,6 @@ func (vpc *VPC) LaunchProxyInstance(imageID string, zone string, sshKey string) 
 		log.LogError("login instance to run cmd %s failed %s", cmd2, err)
 		return inst, "", "", err
 	}
-
 	return instOut.Instances[0], *instOut.Instances[0].PrivateIpAddress, caContent, err
 }
 
