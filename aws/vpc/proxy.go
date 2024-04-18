@@ -54,7 +54,7 @@ func (vpc *VPC) LaunchProxyInstance(imageID string, zone string, keypairName str
 		return inst, "", "", err
 	}
 	privateKeyFile := "proxyKeyPair.pem"
-	sshKey, err := file.WriteToFile(*key, privateKeyFile, privateKeyPath)
+	sshKey, err := file.WriteToFile(*key.KeyMaterial, privateKeyFile, privateKeyPath)
 	if err != nil {
 		log.LogError("Write private key to file failed %s", err)
 		return inst, "", "", err
