@@ -53,6 +53,10 @@ func (vpc *VPC) LaunchProxyInstance(imageID string, zone string, keypairName str
 		log.LogError("Create key pair failed %s", err)
 		return inst, "", "", err
 	}
+	tags := map[string]string{
+		"Name": CON.ProxyName,
+	}
+	vpc.AWSClient.TagResource(*key.KeyPairId, tags)
 	privateKeyFile := "proxyKeyPair.pem"
 	sshKey, err := file.WriteToFile(*key.KeyMaterial, privateKeyFile, privateKeyPath)
 	if err != nil {
@@ -67,9 +71,7 @@ func (vpc *VPC) LaunchProxyInstance(imageID string, zone string, keypairName str
 	} else {
 		log.LogInfo("Launch proxy instance %s succeed", *instOut.Instances[0].InstanceId)
 	}
-	tags := map[string]string{
-		"Name": CON.ProxyName,
-	}
+
 	instID := *instOut.Instances[0].InstanceId
 	vpc.AWSClient.TagResource(instID, tags)
 

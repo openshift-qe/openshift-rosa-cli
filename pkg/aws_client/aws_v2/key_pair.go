@@ -33,7 +33,7 @@ func (client *AwsV2Client) DeleteKeyPair(keyName string) (*ec2.DeleteKeyPairOutp
 		log.LogError("Delete key pair error " + err.Error())
 		return nil, err
 	}
-	log.LogInfo("Delete key pair success")
+	log.LogInfo("Delete key pair %s success", keyName)
 	return output, err
 
 }
