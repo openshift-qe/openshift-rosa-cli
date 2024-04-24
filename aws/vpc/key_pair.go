@@ -16,11 +16,12 @@ func (vpc *VPC) CreateKeyPair(keyName string) (*ec2.CreateKeyPairOutput, error) 
 	return output, nil
 }
 
-func (vpc *VPC) DeleteKeyPair(keyName string) error {
-	_, err := vpc.AWSClient.DeleteKeyPair(keyName)
-	if err != nil {
-		return err
+func (vpc *VPC) DeleteKeyPair(keyNames []string) error {
+	for _, key := range keyNames {
+		_, err := vpc.AWSClient.DeleteKeyPair(key)
+		if err != nil {
+			return err
+		}
 	}
-	fmt.Printf("delete key pair successfully\n")
 	return nil
 }
