@@ -40,13 +40,20 @@ How to delete vpc and the reourses:
 	* NOTE: If the subnets had been existing, it will reuse the exsiting subnets in the zone
 
 	`$ ocmqe create subnets --region us-west-2 --zones a --vpc-id <vpc id>`
+    
 
 * Prepare proxy server
-	* NOTE: Only us-west-2 and ap-northeast-1 persisted the image.
-	* --ssh-file needs the openshift-qe.pem file path
-	* --ca-file just need a path to put the generated CA file
-
-	`$ ocmqe create proxy --region us-west-2 --zones a --vpc-id <vpc id> --ssh-file <openshift-qe.pem file path> --ca-file <ca-file path>`
+    * Parameters Description
+      * --region: Specifies the region where your VPC is located.
+      * --vpc-id: The id of the VPC under which your MITM proxy will be deployed.
+      * --zone: Relates to the region and the subnet you have created. It is used to locate an existing public subnet or create a new one if none exists.
+      * --ca-file: The file path where the MITM proxy’s generated root CA will be stored. Clients will use this root CA to establish secure communication through the MITM proxy.
+      * --keypair-name: The name of the key pair. Ensure this name does not already exist.
+      * --privatekey-path: The directory where the SSH credential file will be stored. This file enables users to SSH into the VM where the MITM proxy is installed.
+        
+	
+	`$ ocmqe create proxy --region us-west-2 --vpc-id <vpc id> --zone <e.g. us-west-2a>  --ca-file <ca file path, eg. ~/proxy/ca-file.pem> --keypair-name <keypair name> --privatekey-path <the directory which store privatekey, e.g. ~/proxy/>`
+    
 
 * Prepare addtional security groups, output the sg IDs with comma seperated
 
